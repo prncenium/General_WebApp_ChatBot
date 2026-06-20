@@ -1,12 +1,14 @@
-
-import React from "react";
+import { forwardRef } from "react";
 import {MessageSquareCode, X } from 'lucide-react';
 import {twMerge} from 'tailwind-merge';
-import {LogOut } from "lucide-react"
 
-const ChatButton=({isOpen,onClick}) =>{
+const ChatButton = forwardRef(({isOpen,onClick}, ref) =>{
     return(
-        <button onClick={onClick} className={twMerge("fixed bottom-4 right-4 w-12 h-12 rounded-full shadow-lg",
+        <button
+        ref={ref}
+        onClick={onClick}
+        aria-label={isOpen ? "Close chat" : "Open chat"}
+        className={twMerge("fixed bottom-4 right-4 w-12 h-12 rounded-full shadow-lg",
         "flex items-center justify-center transition-all duration-400",
         "hover:scale-110 active:scale-95",
         isOpen? "bg-gray-700 hover:bg-gray-800 stroke-white" :"bg-gradient-to-r from-indigo-500 to-purple-600 hover:opacity-90 stroke-white"
@@ -20,6 +22,6 @@ const ChatButton=({isOpen,onClick}) =>{
 
         </button>
     )
-}
+})
 
 export default ChatButton;
